@@ -2,6 +2,6 @@
 
 ### Mercedes Martinez Lozano
 
-### Pre-Entregable 1
+### Pre-Entregable 2
 
-[Link de Acceso](https://mechimocha.github.io/javascript/entregable1-MartinezLozano)
+[Link de Acceso](https://mechimocha.github.io/javascript)
