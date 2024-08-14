@@ -3,13 +3,14 @@ const puntosPorParticiparEnCadaCarrera = 5;
 
 function calcularResultadoCampeonato() {
     let resultadoGeneral = 0;
+    let nombre = prompt('Cual es tu Nombre?', 'Piloto');
     let cantidadCarreras = prompt('Cuantas carreras corriste?', 0);
 
     for (let numeroDeCarrera = 1; numeroDeCarrera <= cantidadCarreras; numeroDeCarrera++) {
         resultadoGeneral += calcularResultadoDeCarrera(numeroDeCarrera);
     }
 
-    mostrarResultado(resultadoGeneral);
+    mostrarResultado(nombre, resultadoGeneral);
 }
 
 function calcularResultadoDeCarrera(numeroDeCarrera) {
@@ -29,8 +30,9 @@ function calcularResultadoDeCarrera(numeroDeCarrera) {
     return puntos + puntosPorParticiparEnCadaCarrera;
 }
 
-function mostrarResultado(puntos) {
-    alert('Acumulaste ' + puntos + ' puntos en este campeonato.')
+function mostrarResultado(nombre, puntos) {
+    let cuerpoTabla = document.getElementById('cuerpo-tabla')
+    cuerpoTabla.innerHTML = '<tr><td>' + nombre + '</td><td>' + puntos + '</td></tr>'
 }
 
 calcularResultadoCampeonato();
