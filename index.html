@@ -19,6 +19,54 @@
             cantidad de
             puntos adicionales.</p>
 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calcularPosicion">
+            Agregar Piloto
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="calcularPosicion" tabindex="-1" aria-labelledby="calcularPosicionLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="calcularPosicionLabel">Agregar datos del piloto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre y Apellido</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Piloto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carrera1" class="form-label">1era Fecha: La Invernada</label>
+                            <input type="number" class="form-control" id="carrera1" min="1" placeholder="Puesto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carrera2" class="form-label">2da Fecha: San Pedro de Colalao</label>
+                            <input type="number" class="form-control" id="carrera2" min="1" placeholder="Puesto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carrera3" class="form-label">3ra Fecha: Juan B. Alberdi</label>
+                            <input type="number" class="form-control" id="carrera3" min="1" placeholder="Puesto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carrera4" class="form-label">4ta Fecha: Las Lomadas</label>
+                            <input type="number" class="form-control" id="carrera4" min="1" placeholder="Puesto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carrera5" class="form-label">5ta Fecha: Carrera del Lago</label>
+                            <input type="number" class="form-control" id="carrera5" min="1" placeholder="Puesto">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="calcular">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>

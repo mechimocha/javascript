@@ -1,20 +1,27 @@
 const puntosPorParticiparEnCadaCarrera = 5;
+const cantidadCarreras = 5
 
+let botonCalculo = document.getElementById('calcular')
+
+botonCalculo.addEventListener('click', function () {
+    calcularResultadoCampeonato();
+})
 
 function calcularResultadoCampeonato() {
     let resultadoGeneral = 0;
-    let nombre = prompt('Cual es tu Nombre?', 'Piloto');
-    let cantidadCarreras = prompt('Cuantas carreras corriste?', 0);
+    let nombre = document.getElementById('nombre').value
 
     for (let numeroDeCarrera = 1; numeroDeCarrera <= cantidadCarreras; numeroDeCarrera++) {
         resultadoGeneral += calcularResultadoDeCarrera(numeroDeCarrera);
     }
 
     mostrarResultado(nombre, resultadoGeneral);
+
+    limpiarFormulario();
 }
 
 function calcularResultadoDeCarrera(numeroDeCarrera) {
-    let posicion = prompt('Resultado de Carrera Numero ' + numeroDeCarrera);
+    let posicion = document.getElementById('carrera' + numeroDeCarrera).value
     let puntos = 0;
 
     if (posicion == 1) {
@@ -35,4 +42,12 @@ function mostrarResultado(nombre, puntos) {
     cuerpoTabla.innerHTML = '<tr><td>' + nombre + '</td><td>' + puntos + '</td></tr>'
 }
 
-calcularResultadoCampeonato();
+function limpiarFormulario() {
+    bootstrap.Modal.getInstance(document.getElementById('calcularPosicion')).hide()
+
+    document.getElementById('nombre').value = ''
+
+    for (let numeroDeCarrera = 1; numeroDeCarrera <= cantidadCarreras; numeroDeCarrera++) {
+        document.getElementById('carrera' + numeroDeCarrera).value = ''
+    }
+}
