@@ -9,13 +9,16 @@ botonCalculo.addEventListener('click', function () {
 
 function calcularResultadoCampeonato() {
     let resultadoGeneral = 0;
+    let puntosPorCarrera = []
     let nombre = document.getElementById('nombre').value
 
     for (let numeroDeCarrera = 1; numeroDeCarrera <= cantidadCarreras; numeroDeCarrera++) {
-        resultadoGeneral += calcularResultadoDeCarrera(numeroDeCarrera);
+        let puntosDeCarrera = calcularResultadoDeCarrera(numeroDeCarrera)
+        puntosPorCarrera.push(puntosDeCarrera)
+        resultadoGeneral += puntosDeCarrera
     }
 
-    mostrarResultado(nombre, resultadoGeneral);
+    mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral);
 
     limpiarFormulario();
 }
@@ -37,9 +40,14 @@ function calcularResultadoDeCarrera(numeroDeCarrera) {
     return puntos + puntosPorParticiparEnCadaCarrera;
 }
 
-function mostrarResultado(nombre, puntos) {
+function mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral) {
     let cuerpoTabla = document.getElementById('cuerpo-tabla')
-    cuerpoTabla.innerHTML = '<tr><td>' + nombre + '</td><td>' + puntos + '</td></tr>'
+    cuerpoTabla.innerHTML =
+        `<tr>
+            <td>${nombre}</td>
+            ${puntosPorCarrera.map((puntos) => `<td>${puntos}</td>`).join('')}
+            <td>${resultadoGeneral}</td>
+        </tr>`
 }
 
 function limpiarFormulario() {
