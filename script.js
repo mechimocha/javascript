@@ -1,14 +1,14 @@
-const puntosPorParticiparEnCadaCarrera = 5;
+const puntosPorParticiparEnCadaCarrera = 5
 const cantidadCarreras = 5
 
 let botonCalculo = document.getElementById('calcular')
 
 botonCalculo.addEventListener('click', function () {
-    calcularResultadoCampeonato();
+    calcularResultadoCampeonato()
 })
 
 function calcularResultadoCampeonato() {
-    let resultadoGeneral = 0;
+    let resultadoGeneral = 0
     let puntosPorCarrera = []
     let nombre = document.getElementById('nombre').value
 
@@ -18,26 +18,26 @@ function calcularResultadoCampeonato() {
         resultadoGeneral += puntosDeCarrera
     }
 
-    mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral);
+    mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral)
 
-    limpiarFormulario();
+    limpiarFormulario()
 }
 
 function calcularResultadoDeCarrera(numeroDeCarrera) {
     let posicion = document.getElementById('carrera' + numeroDeCarrera).value
-    let puntos = 0;
+    let puntos = 0
 
     if (posicion == 1) {
-        puntos = 30;
+        puntos = 30
     } else if (posicion == 2) {
-        puntos = 25;
+        puntos = 25
     } else if (posicion == 3) {
-        puntos = 22;
+        puntos = 22
     } else {
-        puntos = 0;
+        puntos = 0
     }
 
-    return puntos + puntosPorParticiparEnCadaCarrera;
+    return puntos + puntosPorParticiparEnCadaCarrera
 }
 
 function mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral) {
