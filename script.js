@@ -82,6 +82,8 @@ function actualizarResultados(nuevoCorredor) {
 
     corredoresExistentes.push(nuevoCorredor)
 
+    corredoresExistentes.sort((corredorA, corredorB) => corredorB.resultadoGeneral - corredorA.resultadoGeneral)
+
     localStorage.setItem('corredores', JSON.stringify(corredoresExistentes))
 }
 
