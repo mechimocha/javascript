@@ -1,10 +1,40 @@
 const puntosPorParticiparEnCadaCarrera = 5
 const cantidadCarreras = 5
 
+// Al iniciar el Programa
+
 document.addEventListener("DOMContentLoaded", function () {
     pedirResultados()
     mostrarResultados()
 })
+
+const pedirResultados = async () => {
+    let respuesta = await fetch('./resultados.json')
+    let corredores = await respuesta.json()
+
+    localStorage.setItem('corredores', JSON.stringify(corredores))
+}
+
+function mostrarResultados() {
+    let cuerpoTabla = document.getElementById('cuerpo-tabla')
+    let corredores = JSON.parse(localStorage.getItem('corredores'))
+
+    cuerpoTabla.innerHTML = ''
+
+    corredores.forEach((corredor) => {
+        let row = document.createElement('tr')
+        row.innerHTML =
+            `<tr>
+                <td>${corredor.nombre}</td>
+                ${corredor.puntosPorCarrera.map((puntos) => `<td>${puntos}</td>`).join('')}
+                <td>${corredor.resultadoGeneral}</td>
+            </tr>`
+
+        cuerpoTabla.append(row)
+    })
+}
+
+// Al Agregar un Nuevo Corredor
 
 let botonCalculo = document.getElementById('calcular')
 
@@ -47,38 +77,12 @@ function calcularResultadoDeCarrera(numeroDeCarrera) {
     return puntos + puntosPorParticiparEnCadaCarrera
 }
 
-const pedirResultados = async () => {
-    let respuesta = await fetch('./resultados.json')
-    let corredores = await respuesta.json()
-
-    localStorage.setItem('corredores', JSON.stringify(corredores))
-}
-
 function actualizarResultados(nuevoCorredor) {
     let corredoresExistentes = JSON.parse(localStorage.getItem('corredores'))
 
     corredoresExistentes.push(nuevoCorredor)
 
     localStorage.setItem('corredores', JSON.stringify(corredoresExistentes))
-}
-
-function mostrarResultados() {
-    let cuerpoTabla = document.getElementById('cuerpo-tabla')
-    let corredores = JSON.parse(localStorage.getItem('corredores'))
-
-    cuerpoTabla.innerHTML = ''
-
-    corredores.forEach((corredor) => {
-        let row = document.createElement('tr')
-        row.innerHTML =
-            `<tr>
-                <td>${corredor.nombre}</td>
-                ${corredor.puntosPorCarrera.map((puntos) => `<td>${puntos}</td>`).join('')}
-                <td>${corredor.resultadoGeneral}</td>
-            </tr>`
-
-        cuerpoTabla.append(row)
-    })
 }
 
 function limpiarFormulario() {
