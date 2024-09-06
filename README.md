@@ -2,6 +2,6 @@
 
 ### Mercedes Martinez Lozano
 
-### Pre-Entregable 2
+### Trabajo Final
 
 [Link de Acceso](https://mechimocha.github.io/javascript)
