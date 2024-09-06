@@ -1,6 +1,11 @@
 const puntosPorParticiparEnCadaCarrera = 5
 const cantidadCarreras = 5
 
+document.addEventListener("DOMContentLoaded", function () {
+    pedirResultados()
+    mostrarResultados()
+})
+
 let botonCalculo = document.getElementById('calcular')
 
 botonCalculo.addEventListener('click', function () {
@@ -18,7 +23,9 @@ function calcularResultadoCampeonato() {
         resultadoGeneral += puntosDeCarrera
     }
 
-    mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral)
+    actualizarResultados({ nombre, puntosPorCarrera, resultadoGeneral })
+
+    mostrarResultados()
 
     limpiarFormulario()
 }
@@ -40,14 +47,38 @@ function calcularResultadoDeCarrera(numeroDeCarrera) {
     return puntos + puntosPorParticiparEnCadaCarrera
 }
 
-function mostrarResultado(nombre, puntosPorCarrera, resultadoGeneral) {
+const pedirResultados = async () => {
+    let respuesta = await fetch('./resultados.json')
+    let corredores = await respuesta.json()
+
+    localStorage.setItem('corredores', JSON.stringify(corredores))
+}
+
+function actualizarResultados(nuevoCorredor) {
+    let corredoresExistentes = JSON.parse(localStorage.getItem('corredores'))
+
+    corredoresExistentes.push(nuevoCorredor)
+
+    localStorage.setItem('corredores', JSON.stringify(corredoresExistentes))
+}
+
+function mostrarResultados() {
     let cuerpoTabla = document.getElementById('cuerpo-tabla')
-    cuerpoTabla.innerHTML =
-        `<tr>
-            <td>${nombre}</td>
-            ${puntosPorCarrera.map((puntos) => `<td>${puntos}</td>`).join('')}
-            <td>${resultadoGeneral}</td>
-        </tr>`
+    let corredores = JSON.parse(localStorage.getItem('corredores'))
+
+    cuerpoTabla.innerHTML = ''
+
+    corredores.forEach((corredor) => {
+        let row = document.createElement('tr')
+        row.innerHTML =
+            `<tr>
+                <td>${corredor.nombre}</td>
+                ${corredor.puntosPorCarrera.map((puntos) => `<td>${puntos}</td>`).join('')}
+                <td>${corredor.resultadoGeneral}</td>
+            </tr>`
+
+        cuerpoTabla.append(row)
+    })
 }
 
 function limpiarFormulario() {
